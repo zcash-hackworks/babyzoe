@@ -1,0 +1,14 @@
+to get running from scratch (ie, no .parity folder):
+	1.call "./target/debug parity account new" twice
+	2. in poa_chain.json, set "authorities" : [(first account here) "0xacctaddr"]
+			 			  add two lines to accounts section, below the precompiles (do not include 0x)
+								"acctaddr1": { "balance": "1606938044258990275541962092341162602522202993782792835301376", "nonce": "1048576" },
+        						"acctaddr2": { "balance": "100", "nonce": "1048576" }
+						
+	3. run command in command file
+		./target/debug/parity --chain poa_chain.json --dapps-port 8090 --jsonrpc-cors http://ethereum.github.io --author acctaddr1 --unlock acctaddr1 --password pass.conf --reseal-on-txs all --force-sealing
+
+	4. edit .js file in contract folder, and make sure you call everything from acctaddr1
+		(if things don't work for no reason, try adding more gas)
+
+to generate proofs, go to tinysnark folder and run "cargo run --example spend.rs"
