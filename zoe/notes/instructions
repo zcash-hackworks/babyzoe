@@ -6,7 +6,7 @@ to get running from scratch (ie, no .parity folder):
         						"acctaddr2": { "balance": "100", "nonce": "1048576" }
 						
 	3. run command in command file
-		./target/debug/parity --chain poa_chain.json --dapps-port 8090 --jsonrpc-cors http://ethereum.github.io --author acctaddr1 --unlock acctaddr1 --password pass.conf --reseal-on-txs all --force-sealing
+		./target/debug/parity --chain poa_chain.json --author acctaddr1 --unlock acctaddr1 --password pass.conf --reseal-on-txs all --force-sealing
 
 	4. edit .js file in contract folder, and make sure you call everything from acctaddr1
 		(if things don't work for no reason, try adding more gas)
