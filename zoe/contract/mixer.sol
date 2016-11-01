@@ -72,6 +72,7 @@ contract Mixer {
         success = false;
         bytes20 addr_byte = bytes20(addr);
         bytes memory pub = new bytes(128);
+        uint256 withdrawFee = 3141592 * 2;
         uint i;
         for (i = 0; i < 32; i++) pub[i] = serial[i];
         for (i = 0; i < 20; i++) pub[32 + i] = addr_byte[i];
@@ -84,7 +85,7 @@ contract Mixer {
                     return false;
                 }
                 serials[serial] = true;
-                if (!addr.send(1 ether)) {
+                if (!addr.send(1 ether - withdrawFee) || ! msg.sender.send(withdrawFee)) {
                     throw;
                 }
                 else {
